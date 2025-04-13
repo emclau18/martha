@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Martha’s Community Farm Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Poppins, sans-serif;
+      background-color: #F0F0F0;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 30px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      color: white;
+      display: flex;
+      gap: 5px;
+    }
+
+    .logo .inter {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .logo .poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    nav a {
+      font-size: 28px;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      text-decoration: none;
+      margin-left: 30px;
+    }
+
+    .container {
+      padding: 40px 60px;
+    }
+
+    .greeting {
+      font-size: 65px;
+      font-weight: 700;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .subheading {
+      font-size: 40px;
+      font-weight: 400;
+      color: black;
+      margin-top: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .dashboard-sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      color: black;
+    }
+
+    .card span {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      color: black;
+    }
+
+    .big-number {
+      font-size: 100px;
+      font-weight: 700;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 20px;
+    }
+
+    .goals-list p {
+      font-size: 17px;
+      font-weight: 400;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      margin: 8px 0;
+    }
+
+    .events {
+      font-size: 25px;
+      line-height: 35px;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      margin-top: 15px;
+    }
+
+    .add-hours {
+      font-size: 40px;
+      font-weight: 700;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 60px;
+    }
+
+    .edit-info {
+      font-size: 35px;
+      font-weight: 500;
+      line-height: 60px;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 50px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="inter">Martha’s</span>
+      <span class="poppins">Community</span>
+      <span class="inter">Farm</span>
+    </div>
+    <nav>
+      <a href="#">Volunteering</a>
+      <a href="#">About</a>
+      <a href="#">Events</a>
+      <a href="#">Connect With Us</a>
+      <a href="#"><strong>VOLUNTEER</strong></a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="greeting">Welcome, Ellie McLaughlin!</div>
+    <div class="subheading">Your Personalized User Dashboard</div>
+
+    <div class="dashboard-sections">
+      <div class="card">
+        <h2>Badges <span>:</span></h2>
+        <!-- Insert badges as icons or text here -->
+      </div>
+
+      <div class="card">
+        <h2>Total Hours Volunteered: <span>:</span></h2>
+        <div class="big-number">50</div>
+      </div>
+
+      <div class="card">
+        <h2>Goals <span>:</span></h2>
+        <div class="goals-list">
+          <p>Attend one workshop each month</p>
+          <p>Volunteer for a new group!</p>
+          <p>Come to the farm 3x in March</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Upcoming Events:</h2>
+        <div class="events">
+          March 5th, 2025<br/>
+          March 15th, 2025<br/>
+          April 18th, 2025
+        </div>
+      </div>
+    </div>
+
+    <div class="add-hours">Add Hours</div>
+    <a href="#" class="edit-info">Edit User Info</a>
+  </div>
+
+</body>
+</html>
