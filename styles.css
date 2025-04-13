@@ -1,0 +1,12 @@
+.badges-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: center;
+  }
+  
+  .badge-img {
+    width: 100px;
+    height: auto;
+  }
+  
