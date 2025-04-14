@@ -133,6 +133,26 @@
       margin-top: 50px;
       display: inline-block;
     }
+    .goal-item {
+      display: flex;
+      justify-content: space-between; /* Ensure space between the goal text and the checkbox */
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .goal-item label {
+      font-size: 17px;
+      font-weight: 400;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      margin-right: auto; /* Ensures the label stays on the left */
+    }
+
+    .goal-item input[type="checkbox"] {
+      margin-right: 20px; /* Adds a little space between the checkbox and text */
+    }
+</style>
+
   </style>
 </head>
 
@@ -192,15 +212,14 @@
         <div class="big-number">50</div>
       </div>
 
-      <div class="card">
-        <h2>Goals <span>:</span></h2>
-        <div class="goals-list">
-          <p>Attend one workshop each month</p>
-          <p>Volunteer for a new group!</p>
-          <p>Come to the farm 3x in March</p>
-        </div>
-      </div>
-
+      <!-- Goals Card -->
+<div class="card">
+  <h2>Goals <span>:</span></h2>
+  <div class="goals-list" id="goals-container">
+    <!-- Goals will be injected here -->
+  </div>
+</div>
+      
       <div class="card">
         <h2>Upcoming Events:</h2>
         <div class="events">
@@ -209,10 +228,55 @@
           April 18th, 2025
         </div>
       </div>
-    </div>
+      
+      <script>
+        function loadGoals() {
+          const goalsContainer = document.getElementById("goals-container");
+          const goals = JSON.parse(localStorage.getItem("goals")) || [];
+      
+          if (goals.length === 0) {
+            goalsContainer.innerHTML = "<p>No goals yet. Add one from the goals page!</p>";
+            return;
+          }
+      
+          goals.forEach((goal, index) => {
+            // Create a div for each goal
+            const goalElement = document.createElement("div");
+            goalElement.classList.add("goal-item");
+      
+            // Create a checkbox for marking the goal as complete
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = `goal-${index}`;
+            checkbox.checked = goal.completed || false; // Check if the goal is marked as complete
+      
+            // Create a label for the checkbox
+            const label = document.createElement("label");
+            label.setAttribute("for", checkbox.id);
+            label.textContent = `${index + 1}. ${goal.text}`;
+      
+            // When the checkbox is clicked, toggle the completion status
+            checkbox.addEventListener("change", () => {
+              goal.completed = checkbox.checked;
+              localStorage.setItem("goals", JSON.stringify(goals)); // Save the updated status
+            });
+      
+            // Append the checkbox and label to the goal item
+            goalElement.appendChild(checkbox);
+            goalElement.appendChild(label);
+      
+            // Append the goal item to the container
+            goalsContainer.appendChild(goalElement);
+          });
+        }
+      
+        window.onload = loadGoals;
+      </script>
+      
 
     <a href="add-hours.html" class="add-hours">Add Hours</a>
     <a href="edit-profile.html" class="edit-info">Edit User Info</a>
+    <a href="add-goals.html" class="edit-info">Add Goals</a>
 
   </div>
   </div>
