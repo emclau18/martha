@@ -10,7 +10,9 @@
       margin: 0;
       padding: 0;
       font-family: Poppins, sans-serif;
-      background-color: #F0F0F0;
+      background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                  url('images/w02798-small.webp') no-repeat center center fixed;
+      background-size: cover;
     }
 
     header {
@@ -19,6 +21,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
     }
 
     .logo {
@@ -37,11 +44,11 @@
     }
 
     nav a:hover {
-  color: #d4d4d4;
-}
+      color: #d4d4d4;
+    }
 
     .container {
-      padding: 40px 60px;
+      padding: 140px 60px 60px; /* Extra top padding to offset fixed header */
     }
 
     .greeting {
@@ -52,12 +59,12 @@
     }
 
     .subheading {
-  font-size: 40px;
-  font-weight: 400;
-  color: #72773F;
-  margin-top: 10px;
-  font-family: 'Poppins', sans-serif;
-}
+      font-size: 40px;
+      font-weight: 400;
+      color: #72773F;
+      margin-top: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
 
     .dashboard-sections {
       display: grid;
@@ -74,27 +81,26 @@
     }
 
     .card h2 {
-  font-size: 32px;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
-  color: #72773F;
-}
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      color: #72773F;
+    }
 
-
-.card span {
-  font-size: 32px;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  color: #72773F;
-}
+    .card span {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      color: #72773F;
+    }
 
     .big-number {
-  font-size: 100px;
-  font-weight: 700;
-  color: black;
-  font-family: 'Poppins', sans-serif;
-  margin-top: 20px;
-}
+      font-size: 100px;
+      font-weight: 700;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 20px;
+    }
 
     .goals-list p {
       font-size: 17px;
@@ -114,30 +120,29 @@
     }
 
     .add-hours {
-  font-size: 40px;
-  font-weight: 700;
-  color: #72773F;
-  font-family: 'Poppins', sans-serif;
-  margin-top: 60px;
-  display: inline-block;
-  text-decoration: none;
-}
-
+      font-size: 40px;
+      font-weight: 700;
+      color: #72773F;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 60px;
+      display: inline-block;
+      text-decoration: none;
+    }
 
     .edit-info {
-  font-size: 35px;
-  font-weight: 500;
-  line-height: 60px;
-  color: #72773F;
-  font-family: 'Poppins', sans-serif;
-  margin-top: 50px;
-  display: inline-block;
-  text-decoration: none;
-}
+      font-size: 35px;
+      font-weight: 500;
+      line-height: 60px;
+      color: #72773F;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 50px;
+      display: inline-block;
+      text-decoration: none;
+    }
 
     .goal-item {
       display: flex;
-      justify-content: space-between; /* Ensure space between the goal text and the checkbox */
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
     }
@@ -147,15 +152,13 @@
       font-weight: 400;
       color: black;
       font-family: 'Poppins', sans-serif;
-      margin-right: auto; /* Ensures the label stays on the left */
+      margin-right: auto;
     }
 
     .goal-item input[type="checkbox"] {
-      margin-right: 20px; /* Adds a little space between the checkbox and text */
+      margin-right: 20px;
       accent-color: (28, 102, 9, 0.753);
     }
-</style>
-
   </style>
 </head>
 
@@ -168,7 +171,6 @@
     document.getElementById("editModal").style.display = "none";
   }
 
-  // Optional: Close modal when clicking outside of it
   window.onclick = function(event) {
     const modal = document.getElementById("editModal");
     if (event.target == modal) {
@@ -176,7 +178,6 @@
     }
   }
 </script>
-
 
 <body>
 
@@ -207,7 +208,6 @@
           <img src="images/checkribbon.png" alt="Check Badge" class="badge-img">
           <img src="images/starribbon.png" alt="Star Badge 2" class="badge-img">
         </div>
-        
       </div>
 
       <div class="card">
@@ -215,14 +215,13 @@
         <div class="big-number">50</div>
       </div>
 
-      <!-- Goals Card -->
-<div class="card">
-  <h2>Goals <span>:</span></h2>
-  <div class="goals-list" id="goals-container">
-    <!-- Goals will be injected here -->
-  </div>
-</div>
-      
+      <div class="card">
+        <h2>Goals <span>:</span></h2>
+        <div class="goals-list" id="goals-container">
+          <!-- Goals will be injected here -->
+        </div>
+      </div>
+
       <div class="card">
         <h2>Upcoming Events:</h2>
         <div class="events">
@@ -231,76 +230,59 @@
           April 18th, 2025
         </div>
       </div>
-      
-      <script>
-        function loadGoals() {
-          const goalsContainer = document.getElementById("goals-container");
-          const goals = JSON.parse(localStorage.getItem("goals")) || [];
-      
-          if (goals.length === 0) {
-            goalsContainer.innerHTML = "<p>No goals yet. Add one from the goals page!</p>";
-            return;
-          }
-      
-          goals.forEach((goal, index) => {
-            // Create a div for each goal
-            const goalElement = document.createElement("div");
-            goalElement.classList.add("goal-item");
-      
-            // Create a checkbox for marking the goal as complete
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.id = `goal-${index}`;
-            checkbox.checked = goal.completed || false; // Check if the goal is marked as complete
-      
-            // Create a label for the checkbox
-            const label = document.createElement("label");
-            label.setAttribute("for", checkbox.id);
-            label.textContent = `${index + 1}. ${goal.text}`;
-      
-            // When the checkbox is clicked, toggle the completion status
-            checkbox.addEventListener("change", () => {
-              goal.completed = checkbox.checked;
-              localStorage.setItem("goals", JSON.stringify(goals)); // Save the updated status
-            });
-      
-            // Append the checkbox and label to the goal item
-            goalElement.appendChild(checkbox);
-            goalElement.appendChild(label);
-      
-            // Append the goal item to the container
-            goalsContainer.appendChild(goalElement);
-          });
-        }
-      
-        window.onload = loadGoals;
-      </script>
-
-<script>
-  function loadUserName() {
-    const firstName = localStorage.getItem('firstName') || '';
-    const lastName = localStorage.getItem('lastName') || '';
-
-    const fullName = firstName && lastName ? `${firstName} ${lastName}` : 'Guest';
-    document.getElementById('userGreeting').textContent = `Welcome, ${fullName}!`;
-  }
-
-  window.onload = () => {
-    loadUserName();
-    loadGoals(); // Keep this if you're loading goals too
-  };
-</script>
-
-      
+    </div>
 
     <a href="add-hours.html" class="add-hours">Add Hours</a>
     <a href="edit-profile.html" class="edit-info">Edit User Info</a>
     <a href="add-goals.html" class="edit-info">Add Goals</a>
-
   </div>
-  </div>
-</div>
 
+  <script>
+    function loadGoals() {
+      const goalsContainer = document.getElementById("goals-container");
+      const goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+      if (goals.length === 0) {
+        goalsContainer.innerHTML = "<p>No goals yet. Add one from the goals page!</p>";
+        return;
+      }
+
+      goals.forEach((goal, index) => {
+        const goalElement = document.createElement("div");
+        goalElement.classList.add("goal-item");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `goal-${index}`;
+        checkbox.checked = goal.completed || false;
+
+        const label = document.createElement("label");
+        label.setAttribute("for", checkbox.id);
+        label.textContent = `${index + 1}. ${goal.text}`;
+
+        checkbox.addEventListener("change", () => {
+          goal.completed = checkbox.checked;
+          localStorage.setItem("goals", JSON.stringify(goals));
+        });
+
+        goalElement.appendChild(checkbox);
+        goalElement.appendChild(label);
+        goalsContainer.appendChild(goalElement);
+      });
+    }
+
+    function loadUserName() {
+      const firstName = localStorage.getItem('firstName') || '';
+      const lastName = localStorage.getItem('lastName') || '';
+      const fullName = firstName && lastName ? `${firstName} ${lastName}` : 'Guest';
+      document.getElementById('userGreeting').textContent = `Welcome, ${fullName}!`;
+    }
+
+    window.onload = () => {
+      loadUserName();
+      loadGoals();
+    };
+  </script>
 
 </body>
 </html>
