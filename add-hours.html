@@ -137,6 +137,21 @@
     function handleCancel() {
       window.location.href = "index.html";
     }
+
+    function handleSubmit(event) {
+  event.preventDefault();
+  const date = document.getElementById("date").value;
+  const hours = parseInt(document.getElementById("hours").value, 10);
+  const group = document.getElementById("group").value;
+
+  // Save hours to localStorage
+  let totalHours = parseInt(localStorage.getItem("totalVolunteerHours") || "0", 10);
+  totalHours += hours;
+  localStorage.setItem("totalVolunteerHours", totalHours.toString());
+
+  alert(`Thanks! You logged ${hours} hour(s) on ${date}${group ? " with " + group : ""}.`);
+  document.querySelector("form").reset();
+}
   </script>
 </body>
 </html>
