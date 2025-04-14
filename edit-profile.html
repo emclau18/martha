@@ -15,18 +15,16 @@
 
     .back-arrow {
       position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 18px;
-      text-decoration: none;
-      color: #333;
+      top: 30px;
+      left: 30px;
+      font-size: 24px;
       font-weight: 500;
-      background: white;
-      padding: 8px 12px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: background-color 0.2s ease;
-      z-index: 999; /* ensures it stays on top */
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      z-index: 1000;
     }
 
     .back-arrow:hover {
@@ -98,7 +96,7 @@
   </style>
 </head>
 <body>
-  <a href="index.html" class="back-arrow">← Back</a>
+  <a href="index.html" class="back-arrow">Back</a>
 
   <div class="container">
     <h1>Edit Profile</h1>
@@ -122,5 +120,20 @@
     </form>
     <a href="index.html" class="back-link">← Back to Dashboard</a>
   </div>
+  <script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+  
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("lastName", lastName);
+  
+      alert("Profile saved!");
+      window.location.href = "index.html"; // Redirect to dashboard
+    });
+  </script>
+  
 </body>
 </html>

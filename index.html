@@ -193,7 +193,7 @@
   </header>
 
   <div class="container">
-    <div class="greeting">Welcome, Ellie McLaughlin!</div>
+    <div class="greeting" id="userGreeting">Welcome!</div>
     <div class="subheading">Your Personalized User Dashboard</div>
 
     <div class="dashboard-sections">
@@ -272,6 +272,22 @@
       
         window.onload = loadGoals;
       </script>
+
+<script>
+  function loadUserName() {
+    const firstName = localStorage.getItem('firstName') || '';
+    const lastName = localStorage.getItem('lastName') || '';
+
+    const fullName = firstName && lastName ? `${firstName} ${lastName}` : 'Guest';
+    document.getElementById('userGreeting').textContent = `Welcome, ${fullName}!`;
+  }
+
+  window.onload = () => {
+    loadUserName();
+    loadGoals(); // Keep this if you're loading goals too
+  };
+</script>
+
       
 
     <a href="add-hours.html" class="add-hours">Add Hours</a>
