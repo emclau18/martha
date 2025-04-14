@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Volunteer Hours</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 60px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #F0F0F0;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      font-size: 24px;
+      font-weight: 500;
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 100px auto 0;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: black;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 500;
+      color: black;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #1a1a1a;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-button">Back</a>
+
+  <div class="container">
+    <h1>Add Volunteer Hours</h1>
+    <form onsubmit="handleSubmit(event)">
+      <label for="hours">How many hours did you volunteer?</label>
+      <input type="number" id="hours" name="hours" placeholder="Enter number of hours" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const hours = document.getElementById("hours").value;
+      alert(`Thank you! ${hours} hours recorded.`);
+      // You can add Firebase integration here if needed
+      document.getElementById("hours").value = "";
+    }
+  </script>
+</body>
+</html>
