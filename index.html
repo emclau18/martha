@@ -45,6 +45,10 @@
 .header-options span strong {
   font-weight: 700;
 }
+
+.logo-wrapper {
+  flex: 1;
+}
     .logo {
       font-size: 28px;
       color: white;
@@ -105,16 +109,18 @@
       font-family: 'Poppins', sans-serif;
       color: #72773F;
       margin-bottom: 10px;
+      margin-top: 0;       /* push title to top */
+      margin-bottom: 10px; /* space below it */
     }
 
     #totalHoursDisplay {
-      font-size: 100px; /* Keep the large number size */
+      font-size: 110px; /* Keep the large number size */
       font-weight: 700; /* Keep it bold */
       color: #72773F;
       padding: 0; /* Remove any extra padding */
       margin: 0; /* Remove extra margin */
+      margin-bottom: -50px;
     }
-
 
     .card span {
       font-size: 32px;
@@ -186,6 +192,8 @@
 
     .goal-item input[type="checkbox"] {
       margin-right: 20px;
+      transform: scale(1.5); /* Increase this for bigger size */
+      accent-color: #1c6609; /* This should be a valid color value */
       accent-color: (28, 102, 9, 0.753);
     }
 
