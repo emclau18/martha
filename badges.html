@@ -56,18 +56,30 @@
         text-align: center;
     }
 
-    .badge-item img {
-    width: 100px;
-    height: auto;
-    border-radius: 50%;
-    border: 2px solid #72773F;
-    background-color: #eaeaea;
-
-    /* Add this: */
-    padding: 10px;
-    box-sizing: border-box; /* ensures padding doesn't push out the border */
+    .badge-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: #eaeaea;
+        border: 2px solid #72773F;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto; /* center inside badge-item */
+        box-sizing: border-box;
+        overflow: hidden; /* prevents image from spilling out */
     }
 
+    .badge-circle img {
+        width: 70%;
+        height: auto;
+    }
+
+    /* Make the whole badge grayscale when locked */
+    .locked .badge-circle {
+        filter: grayscale(100%);
+        opacity: 0.5;
+    }
 
     .badge-item p {
       font-size: 16px;
@@ -93,22 +105,30 @@
     <div class="badge-grid">
       <!-- Each badge has data-required-hours for 10, 20, 50, 100 in that order -->
       <div class="badge-item" data-required-hours="10">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="10 Volunteer Hours" />
+    </div>
         <p>10 Volunteer Hours</p>
       </div>
 
       <div class="badge-item" data-required-hours="20">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="20 Volunteer Hours" />
+        </div>
         <p>20 Volunteer Hours</p>
       </div>
 
       <div class="badge-item" data-required-hours="50">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="50 Volunteer Hours" />
+        </div>       
         <p>50 Volunteer Hours</p>
       </div>
 
       <div class="badge-item" data-required-hours="100">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="100 Volunteer Hours" />
+        </div>
         <p>100 Volunteer Hours</p>
       </div>
     </div>
