@@ -1,0 +1,132 @@
+<!-- badges.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Your Badges</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 60px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #F0F0F0;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      font-size: 24px;
+      font-weight: 500;
+      background-color: #72773F;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 100px auto 0;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #72773F;
+    }
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .badge-item {
+        position: relative;
+        text-align: center;
+    }
+
+    .badge-item img {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid #72773F;
+    background-color: #eaeaea;
+
+    /* Add this: */
+    padding: 10px;
+    box-sizing: border-box; /* ensures padding doesn't push out the border */
+    }
+
+
+    .badge-item p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #72773F;
+      margin-top: 10px;
+    }
+
+    /* Grey out locked badges */
+    .locked img {
+    filter: grayscale(100%);
+    opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- "Back" button to return to the main dashboard -->
+  <a href="index.html" class="back-button">Back</a>
+
+  <div class="container">
+    <h1>Community Badges</h1>
+    <div class="badge-grid">
+      <!-- Each badge has data-required-hours for 10, 20, 50, 100 in that order -->
+      <div class="badge-item" data-required-hours="10">
+        <img src="images/starribbon.png" alt="10 Volunteer Hours" />
+        <p>10 Volunteer Hours</p>
+      </div>
+
+      <div class="badge-item" data-required-hours="20">
+        <img src="images/starribbon.png" alt="20 Volunteer Hours" />
+        <p>20 Volunteer Hours</p>
+      </div>
+
+      <div class="badge-item" data-required-hours="50">
+        <img src="images/starribbon.png" alt="50 Volunteer Hours" />
+        <p>50 Volunteer Hours</p>
+      </div>
+
+      <div class="badge-item" data-required-hours="100">
+        <img src="images/starribbon.png" alt="100 Volunteer Hours" />
+        <p>100 Volunteer Hours</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Grab the total volunteer hours from localStorage
+    const totalHours = parseInt(localStorage.getItem("totalVolunteerHours") || "0", 10);
+
+    // Loop through each badge and lock it if the user doesn't meet the hour requirement
+    document.querySelectorAll(".badge-item").forEach(badge => {
+      const requiredHours = parseInt(badge.dataset.requiredHours, 10);
+      if (totalHours < requiredHours) {
+        // Add the "locked" class if totalHours < requiredHours
+        badge.classList.add("locked");
+      }
+    });
+  </script>
+
+</body>
+</html>
