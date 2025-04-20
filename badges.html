@@ -40,7 +40,8 @@
     h1 {
       font-size: 36px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-top: 0;
+      margin-bottom: 45px;
       color: #72773F;
     }
 
@@ -51,23 +52,77 @@
       margin-top: 30px;
     }
 
+    /* Tooltip styling for locked badges */
+    .badge-item.locked[data-tooltip] {
+        position: relative;
+    }
+
+    .badge-item.locked[data-tooltip]::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 110%; /* above the badge */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 400;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+        z-index: 10;
+    }
+
+    .badge-item.locked[data-tooltip]::before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: rgba(0, 0, 0, 0.85);
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        z-index: 10;
+    }
+
+    .badge-item.locked[data-tooltip]:hover::after,
+    .badge-item.locked[data-tooltip]:hover::before {
+        opacity: 1;
+    }
+
     .badge-item {
         position: relative;
         text-align: center;
     }
 
-    .badge-item img {
-    width: 100px;
-    height: auto;
-    border-radius: 50%;
-    border: 2px solid #72773F;
-    background-color: #eaeaea;
-
-    /* Add this: */
-    padding: 10px;
-    box-sizing: border-box; /* ensures padding doesn't push out the border */
+    .badge-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: #eaeaea;
+        border: 2px solid #72773F;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto; /* center inside badge-item */
+        box-sizing: border-box;
+        overflow: hidden; /* prevents image from spilling out */
     }
 
+    .badge-circle img {
+        width: 70%;
+        height: auto;
+    }
+
+    /* Make the whole badge grayscale when locked */
+    .locked .badge-circle {
+        filter: grayscale(100%);
+        opacity: 0.5;
+    }
 
     .badge-item p {
       font-size: 16px;
@@ -93,40 +148,46 @@
     <div class="badge-grid">
       <!-- Each badge has data-required-hours for 10, 20, 50, 100 in that order -->
       <div class="badge-item" data-required-hours="10">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="10 Volunteer Hours" />
+    </div>
         <p>10 Volunteer Hours</p>
       </div>
 
       <div class="badge-item" data-required-hours="20">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="20 Volunteer Hours" />
+        </div>
         <p>20 Volunteer Hours</p>
       </div>
 
       <div class="badge-item" data-required-hours="50">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="50 Volunteer Hours" />
+        </div>       
         <p>50 Volunteer Hours</p>
       </div>
 
       <div class="badge-item" data-required-hours="100">
+        <div class="badge-circle">
         <img src="images/starribbon.png" alt="100 Volunteer Hours" />
+        </div>
         <p>100 Volunteer Hours</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Grab the total volunteer hours from localStorage
     const totalHours = parseInt(localStorage.getItem("totalVolunteerHours") || "0", 10);
-
-    // Loop through each badge and lock it if the user doesn't meet the hour requirement
     document.querySelectorAll(".badge-item").forEach(badge => {
-      const requiredHours = parseInt(badge.dataset.requiredHours, 10);
-      if (totalHours < requiredHours) {
-        // Add the "locked" class if totalHours < requiredHours
+    const requiredHours = parseInt(badge.dataset.requiredHours, 10);
+    if (totalHours < requiredHours) {
         badge.classList.add("locked");
-      }
+        const remaining = requiredHours - totalHours;
+        badge.setAttribute("data-tooltip", `Earn ${remaining} more hour${remaining !== 1 ? 's' : ''} to unlock`);
+    }
     });
-  </script>
+  </script>  
 
 </body>
 </html>
