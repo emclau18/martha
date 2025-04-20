@@ -387,6 +387,14 @@
 
     const totalHours = localStorage.getItem("totalVolunteerHours") || "0";
     document.getElementById("totalHoursDisplay").innerText = totalHours;
+    
+    const lastLogged = localStorage.getItem("lastLoggedHours");
+if (lastLogged) {
+  const p = document.createElement("p");
+  p.textContent = `Last logged: ${lastLogged} hour(s)`;
+  document.getElementById("totalHoursDisplay").insertAdjacentElement("afterend", p);
+}
+
   </script>
 
 </body>

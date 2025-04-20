@@ -149,9 +149,13 @@
   totalHours += hours;
   localStorage.setItem("totalVolunteerHours", totalHours.toString());
 
+  // Save the last logged hours
+  localStorage.setItem("lastLoggedHours", hours.toString());
+
   alert(`Thanks! You logged ${hours} hour(s) on ${date}${group ? " with " + group : ""}.`);
   document.querySelector("form").reset();
 }
+
   </script>
 </body>
 </html>
