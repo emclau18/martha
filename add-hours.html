@@ -151,6 +151,7 @@
 
   // Save the last logged hours
   localStorage.setItem("lastLoggedHours", hours.toString());
+  localStorage.setItem("lastLoggedDate", date);
 
   alert(`Thanks! You logged ${hours} hour(s) on ${date}${group ? " with " + group : ""}.`);
   document.querySelector("form").reset();

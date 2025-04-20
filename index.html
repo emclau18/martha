@@ -322,8 +322,9 @@
         <a href="badges.html" class="profile-link" style="margin-top: 10px; display:inline-block;">View All Badges</a>
       </div>
 
+
       <div class="card">
-        <h2>Total Hours Volunteered:</h2>
+        <h2>Total Hours Volunteered in 2025:</h2>
         <p id="totalHoursDisplay">0</p>
       </div>      
 
@@ -397,11 +398,12 @@
     document.getElementById("totalHoursDisplay").innerText = totalHours;
     
     const lastLogged = localStorage.getItem("lastLoggedHours");
-if (lastLogged) {
-  const p = document.createElement("p");
-  p.textContent = `Last logged: ${lastLogged} hour(s)`;
-  document.getElementById("totalHoursDisplay").insertAdjacentElement("afterend", p);
-}
+    const lastLoggedDate = localStorage.getItem("lastLoggedDate");
+    if (lastLogged) {
+      const p = document.createElement("p");
+      p.textContent = `Last logged: ${lastLogged} hour(s) on ${lastLoggedDate}`;
+      document.getElementById("totalHoursDisplay").insertAdjacentElement("afterend", p);
+    }
 
   </script>
 
